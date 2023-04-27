@@ -1,0 +1,100 @@
+/* =============================== Variables ==================================== */
+:root{
+    --head-foot-color:  rgb(187, 186, 194);
+    --main-color: white;
+
+    --h1-color: black;
+    --h2-color: rgb(72, 118, 121);
+    --menu-color: black;
+    --menu-hover-color: rgb(17, 127, 134);
+}
+/* ================================ General ==================================== */
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+  html{
+    font-size: clamp(1rem, 2.2vh, 3rem);
+  }
+
+/* ============================   Header General  ============================== */  
+header{
+    background-color: var(--head-foot-color);
+    height: 7vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header img {
+    height: 6vh;
+}
+header h1{
+    color: var(--h1-color);
+    text-align: center;
+}
+
+
+.menu-list {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+.menu-item {
+    margin-right: 1em;
+  }
+  
+.menu-item:last-child {
+    margin-right: 1rem;
+  }
+  
+.menu-item a {
+    text-decoration: none;
+    color: var(--menu-color);
+    font-size: 1.1rem;
+
+}
+  
+.menu-item a:hover {
+    color: var(--menu-hover-color);
+}
+/* ========================== Cuerpo general  ===================== */
+main{
+    background-color: var(--main-color);
+    padding: 1rem;
+}
+
+.recuadros{
+    border: solid 1px black;
+    min-height: 4vh;
+    margin: .5rem;
+    padding: .5rem;
+}
+
+.tituloPagina{
+    color: var(--h2-color);
+    text-align: center;
+}
+
+.espacioTrabajo{
+    min-height: 65vh;
+}
+
+
+/* =========================== Footer General ========================= */
+footer{
+    background-color: var(--head-foot-color);
+    min-height: 5vh;
+    text-align: center;
+}
+
+footer p{
+    font-size: 1 rem;
+    color: rgb(72, 118, 121);
+    /* color: rgb(123, 159, 161); */
+}
+
