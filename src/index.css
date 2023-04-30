@@ -33,6 +33,7 @@ header img {
 header h1{
     color: var(--h1-color);
     text-align: center;
+    font-size: 1.8rem;
 }
 
 

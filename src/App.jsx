@@ -1,5 +1,5 @@
 import Header from "./components/bigContainers/header.jsx";
-import Main from "./components/bigContainers/principal.jsx";
+import Main from "./components/bigContainers/mainGeneral.jsx";
 import Footer from "./components/bigContainers/footer.jsx";
 import MainRMAContent from "./components/bigContainers/mainRMA.jsx";
 
