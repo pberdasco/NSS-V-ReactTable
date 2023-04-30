@@ -2,9 +2,6 @@ import React from 'react';
 import { useTable, useExpanded } from 'react-table';
 import PropTypes from 'prop-types';
 
-
-
-
 // A simple way to support a renderRowSubComponent is to make a render prop
 // This is NOT part of the React Table API, it's merely a rendering
 // option we are creating for ourselves in our table renderer
@@ -28,9 +25,9 @@ export default function Table({ columns: userColumns, data, renderRowSubComponen
 
   return (
     <>
-      <pre>
+      {/* <pre>
         <code>{JSON.stringify({ expanded: expanded }, null, 2)}</code>
-      </pre>
+      </pre> */}
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
@@ -79,8 +76,6 @@ export default function Table({ columns: userColumns, data, renderRowSubComponen
           })}
         </tbody>
       </table>
-      <br />
-      <div>Showing the first 20 results of {rows.length} rows</div>
     </>
   )
 }
@@ -96,3 +91,4 @@ Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   renderRowSubComponent: PropTypes.func.isRequired,
 };
+

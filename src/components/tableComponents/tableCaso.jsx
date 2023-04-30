@@ -4,6 +4,8 @@ import React from 'react';
 import styled from 'styled-components';
 import {CASOS} from "../../apiAccess/caso.js";
 import Table from "./table.jsx";
+import EstadoCab from './estadoCab.jsx';
+import TableItems from './tableItems.jsx';
 
 const Styles = styled.div`
   padding: 1rem;
@@ -60,7 +62,9 @@ export default function TableCasos() {
         },
         {
           Header: 'Estado',
-          accessor: 'estado'
+          accessor: 'estado',
+          Cell: ({ value }) => <EstadoCab estado={value}/>
+
         }
       ],
       []
@@ -71,16 +75,26 @@ export default function TableCasos() {
     // Create a function that will render our row sub components
     const renderRowSubComponent = React.useCallback(
       ({ row }) => (
-        <pre
-          style={{
-            fontSize: '10px',
-          }}
-        >
-          <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
-        </pre>
+        <TableItems row={row}/>
       ),
       []
     )
+    // const renderRowSubComponent = React.useCallback(
+    //   ({ row }) => (
+    //     <pre
+    //       style={{
+    //         fontSize: '10px',
+    //       }}
+    //     >
+    //       <code>Index: {row.index}</code><br/>
+    //       <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
+    //       {/* <code>{JSON.stringify({ subRows: row.subRows }, null, 2)}</code> */}
+    //       <code>{JSON.stringify({ original: row.original }, null, 2)}</code>
+    //       <code>{JSON.stringify({ items: row.original.items }, null, 2)}</code>
+    //     </pre>
+    //   ),
+    //   []
+    // )
   
     return (
       <Styles>
@@ -101,6 +115,7 @@ export default function TableCasos() {
     columns: PropTypes.array,
     data: PropTypes.array,
     renderRowSubComponent: PropTypes.func ,
+    value: PropTypes.any,
     row: PropTypes.shape({
       getToggleRowExpandedProps: PropTypes.func.isRequired,
       isExpanded: PropTypes.bool.isRequired

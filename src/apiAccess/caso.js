@@ -1,7 +1,7 @@
 export const CASOS = [
     {id: 1,
      cliente: "Pedro",
-     estado: "En proceso",
+     estado: "1",
      items: [
             {id: 1,
             producto: "Televisor"},
@@ -13,7 +13,7 @@ export const CASOS = [
     },
     {id: 2,
      cliente: "Jose",
-     estado: "Inicial",
+     estado: "2",
      items: [
             {id: 4,
             producto: "Cafetera"}
@@ -21,7 +21,7 @@ export const CASOS = [
     },
     {id: 3,
      cliente: "Ignacio",
-     estado: "Inicial",
+     estado: "3",
      items: [
             {id: 5,
             producto: "Cafetera"},
@@ -31,7 +31,7 @@ export const CASOS = [
     },
     {id: 4,
         cliente: "Ignacio",
-        estado: "Inicial",
+        estado: "2",
         items: [
             {id: 7,
             producto: "Cafetera"},
