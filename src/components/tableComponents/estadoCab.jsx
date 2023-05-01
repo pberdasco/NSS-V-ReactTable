@@ -1,18 +1,13 @@
 import PropTypes from 'prop-types';
+import { getEstadoCab} from "../../estados.JS";
+import "./colorEstado.css";
 
 export default function EstadoCab({estado}) {
-    let textoEstado = "Otros";
-    let clName = "colorRechazado"
-
-    if (estado == 1) {
-        textoEstado = "Original" ;
-        clName = "";
-    } 
     return (
-        <p className={clName}>{textoEstado}</p>
+        <span className={getEstadoCab(estado).claseCSS}>{getEstadoCab(estado).nombre}</span>
     )
 }
 
 EstadoCab.propTypes = {
-    estado: PropTypes.string.isRequired,
+    estado: PropTypes.number.isRequired,
 };

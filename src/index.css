@@ -45,22 +45,19 @@ header h1{
     padding: 0;
   }
   
-.menu-item {
+.menu-list a {
     margin-right: 1em;
-  }
-  
-.menu-item:last-child {
-    margin-right: 1rem;
-  }
-  
-.menu-item a {
     text-decoration: none;
     color: var(--menu-color);
     font-size: 1.1rem;
-
-}
+  }
   
-.menu-item a:hover {
+.menu-list a:last-child {
+    margin-right: 1rem;
+  }
+  
+  
+.menu-list a:hover {
     color: var(--menu-hover-color);
 }
 /* ========================== Cuerpo general  ===================== */

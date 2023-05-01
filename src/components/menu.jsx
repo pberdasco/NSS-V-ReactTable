@@ -1,11 +1,12 @@
+import {Link} from "react-router-dom"
 export default function Menu() {
     return (
       <nav>
         <ul className="menu-list">
-          <li className="menu-item"><a href="#">Garantías</a></li>
-          <li className="menu-item"><a href="#">RMA</a></li>
-          <li className="menu-item"><a href="#">Productos</a></li>
-          <li className="menu-item"><a href="#">Login</a></li>
+          <Link to="/">Garantías</Link>
+          <Link to="/rma">RMA</Link>
+          <Link to="/productos">Productos</Link>
+          <Link to="/login">Login</Link>
         </ul>
       </nav>
     );

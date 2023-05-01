@@ -1,6 +1,6 @@
 import TableCasos from "../tableComponents/tableCaso.jsx";
 
-export default function MainRMAContent() {
+export default function MainSTContent() {
   return (
     <div className="espacioTrabajo">
       <section className="recuadros">Filtros</section>
