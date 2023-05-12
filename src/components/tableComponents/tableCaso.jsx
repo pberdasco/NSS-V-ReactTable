@@ -1,105 +1,72 @@
-import PropTypes from "prop-types";
-import { Casos } from "../../apiAccess/casosApi.js";
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import Table from "./table.jsx";
 import TableItems from "./tableItems.jsx";
-import BotonesCab from "./botonesCab.jsx";
-import { getEstadoCab} from "../../estados.JS"
-//import "./colorEstado.css";
 
+import { Casos } from "../../apiAccess/casosApi.js";
+import { getEstadoCab, getEstadoDatos} from "../../apiAccess/estados.js";
 import { Styles } from "./tableCasoCSS.js";
 
+import tableCasoColumns from "./tableCasoColumns.jsx";
+
 export default function TableCasos() {
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "",
-        id: "expander",
-        Cell: ({ row }) => (
-          <span {...row.getToggleRowExpandedProps()}>
-            {row.isExpanded ? "👇" : "👉"}
-          </span>
-        ),
-      },
-      {
-        Header: "Caso",
-        accessor: "id",
-      },
-      {
-        Header: "Alta",
-        accessor: "fechaAlta",
-      },
-      {
-        Header: "Items",
-        accessor: undefined,
-        Cell: ({ row }) => {row.original.items.length}
-      },
-      {
-        Header: "Datos",
-        accessor: "statusDatosID",
-        Cell: ({ value }) => value   // Componente que lo muestre con descripcion y color
-      },
-      {
-        Header: "inicio",
-        accessor: "fechaInicio",
-      },
-      {
-        Header: "Estado",
-        accessor: "estadoID",
-        Cell: ({ value }) => <> <span className={getEstadoCab(value).claseCSS}> {getEstadoCab(value).nombre}</span> </>,
-
-        //  className:  "colorAprobado"  //(value) => {getEstadoCab(value).claseCSS},
-      
-      },
-      {
-        Header: "Ret",
-        accessor: "retiro",
-        Cell: ({ value }) => value   // Componente que lo muestre dibujito
-      },
-      {
-        Header: "Cliente",
-        accessor: "cliente.id",
-        //{`${caso.cliente.id} ${caso.cliente.mail} (${caso.cliente.empresa || caso.cliente.apellido})`}
-      },
-      {
-        Header: "Acciones",
-        accessor: undefined,
-        Cell: ({ row }) => <BotonesCab row={row} setEstado={setEstado} />,
-      },
-    ],
-    []
-  );
-
-
-
-  // const updateRecord = (i, propACambiar, newValue) => {
-  //   const newRecord = { ...casos[i], [propACambiar]: newValue };
-  //   const newCasos = [...casos];
-  //   newCasos[i] = newRecord;
-  //   setCasos(newCasos);
-  // };
-
-  const [listaCasos, setListaCasos] = React.useState([]);
+// ================================================
+//       Columnas de la tabla memoizadas  
+  const columns = React.useMemo(() => tableCasoColumns(setEstado), []);
   
-    React.useEffect(() => {
+// =================================================================
+//      Array original y data que es el equivalente que se 
+//      le pasa a la tabla. React-Table solicita que sea memoizada
+  const [listaCasos, setListaCasos] = React.useState([]);
+  const data = React.useMemo(() => listaCasos, [listaCasos]);
+
+// ==================================================================
+//      Actualizacion del array base desde la api (base de datos)
+//           al inicio y luego ver ante que cambios
+  React.useEffect(() => {
       async function fetchData() {
         const data = await Casos.getAll();
         setListaCasos(data);
       }
       fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-  const data = React.useMemo(() => listaCasos, [listaCasos]);
-
-  // Create a function that will render our row sub components
+// =================================================
+//      Función para renderizar detalles
   const renderRowSubComponent = React.useCallback(
     ({ row }) => <TableItems row={row} />,
     []
   );
 
-  function setEstado(estado) {
+// ==================================================
+//      Prueba cambio de un atributo en una fila
+  function setEstado(estado, row) {
+
+    const updateRecordInmutable = () => {
+          const newRecord = { ...row.original, estadoID: estado };
+          const newlistaCasos = [...listaCasos];
+          newlistaCasos[row.index] = newRecord;   // en lugar de row.index quizas hay que hacer un findIndex del id en original
+          return newlistaCasos
+      };
+
     console.log("Estado cambiado = ", estado);
+    console.log(row.index, row.original);
+    console.log(listaCasos[row.index])
+    const newListaCasos = updateRecordInmutable();
+    console.log(newListaCasos[row.index]);
+    setListaCasos(newListaCasos);  
+
+  }
+
+// ==================================================
+//       Clases especiales para ciertas celdas
+  const setCellClass = (cell) => { 
+    if (cell?.column?.id == "estadoID"){
+      return getEstadoCab(cell.value).claseCSS;
+    } 
+    if (cell?.column?.id == "statusDatosID"){
+      return getEstadoDatos(cell.value).claseCSS;
+    } 
   }
 
   return (
@@ -108,18 +75,8 @@ export default function TableCasos() {
         columns={columns}
         data={data}
         renderRowSubComponent={renderRowSubComponent}
+        setCellClass={setCellClass}
       />
     </Styles>
   );
 }
-
-TableCasos.propTypes = {
-  columns: PropTypes.array,
-  data: PropTypes.array,
-  renderRowSubComponent: PropTypes.func,
-  value: PropTypes.any,
-  row: PropTypes.shape({
-    getToggleRowExpandedProps: PropTypes.func.isRequired,
-    isExpanded: PropTypes.bool.isRequired,
-  }),
-};

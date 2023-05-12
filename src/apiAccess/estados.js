@@ -1,4 +1,4 @@
-import { Estados } from "./apiAccess/estadosApi";
+import { Estados } from "./estadosApi";
 
 const ESTADOS_CAB = await Estados.estadoCabGetAll();
 const ESTADOS_ITEM = await Estados.estadoItemGetAll();

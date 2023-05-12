@@ -2,8 +2,13 @@ import styled from 'styled-components';
 
 export const Styles = styled.div`
   /* padding: 1rem; */
+
+  html, body {
+  height: 100%;
+}
+
   .colorRechazado{
-	background-color: red;
+	  background-color: red;
   }
   .colorRevision{
     background-color: yellow;

@@ -10,10 +10,10 @@ function App(){
   return <>
     <Header/>
     <Routes>
-    {/* <Route path="/" exact render={() => <Main  content={<MainSTContent/>} />} />  */}
         <Route path="/" exact element={<Main  content={<MainSTContent/>} />} /> 
         <Route path="/productos" element={<MainProductos/>} />
         <Route path="/login" element={<Login/>} />
+        <Route path="*" element={<>Not Found</>}/>
     </Routes> 
     <Footer/>
   </>

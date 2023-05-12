@@ -4,7 +4,7 @@ export default function BotonesCab({row, setEstado}) {
     const cantItems = row.original.items.length;
     
     return (
-        <button onClick={() => setEstado(7)}>Items:{cantItems}</button>
+        <button onClick={() => setEstado(7, row)}>Items:{cantItems}</button>
     )
 }
 

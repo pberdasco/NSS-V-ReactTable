@@ -3,7 +3,7 @@ import { useTable, useExpanded } from 'react-table';
 import PropTypes from 'prop-types';
 
 
-export default function Table({ columns: userColumns, data, renderRowSubComponent }) {
+export default function Table({ columns: userColumns, data, renderRowSubComponent, setCellClass }) {
   const {
       getTableProps,
       getTableBodyProps,
@@ -21,7 +21,7 @@ export default function Table({ columns: userColumns, data, renderRowSubComponen
 
   return (
     <>
-      <table {...getTableProps()}>
+      <table {...getTableProps({className: "main-table"})}>
         <thead>
           {headerGroups.map(headerGroup => (
             <tr key={headerGroup.id} {...headerGroup.getHeaderGroupProps()}>
@@ -40,7 +40,7 @@ export default function Table({ columns: userColumns, data, renderRowSubComponen
                   {row.cells.map(cell => {
                     return (
                       <td key={cell.id} 
-                      {...cell.getCellProps({className: cell.column.className})}>{cell.render('Cell')}</td>
+                      {...cell.getCellProps({className: setCellClass(cell)})}>{cell.render('Cell')}</td>
                     )
                   })}
                 </tr>
@@ -70,6 +70,7 @@ Table.propTypes = {
     })
   ),
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  renderRowSubComponent: PropTypes.func.isRequired,
+  renderRowSubComponent: PropTypes.func,
+  setCellClass: PropTypes.func.isRequired,
 };
 

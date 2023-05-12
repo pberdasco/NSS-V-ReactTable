@@ -3,12 +3,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Table from "./table.jsx";
 import {Styles} from "./tableCasoCSS.js";
-import { getEstadoItem} from "../../estados.JS"
+import { getEstadoItem} from "../../apiAccess/estados.js"
 
 // const TableItemsMemo =({row}) =>{
 export default function TableItems({row}) {
   
     const items = row.original.items;
+
+    const setCellClass = (cell) => { 
+        if (cell?.column?.id == "estadoID"){
+          return getEstadoItem(cell.value).claseCSS;
+        } 
+      }
+
     const columns = React.useMemo(() => [
                             {
                                 Header: 'Item',
@@ -52,6 +59,7 @@ export default function TableItems({row}) {
               columns={columns}
               data={data}
               renderRowSubComponent={null} // la dejo porque usa el mismo componente que el principal
+              setCellClass={setCellClass}
           />
       </Styles>
     )
@@ -62,5 +70,6 @@ export default function TableItems({row}) {
 // export default TableItems
 
 TableItems.propTypes = {
-    row: PropTypes.object.isRequired
+    row: PropTypes.object.isRequired,
+    value: PropTypes.any
 };

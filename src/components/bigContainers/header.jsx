@@ -1,4 +1,4 @@
-import Menu from "../menu.jsx";
+import Menu from "./menu.jsx";
 
 export default function Header(){
     return <header>
