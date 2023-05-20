@@ -17,7 +17,7 @@ export default function TableCasos() {
 // =================================================================
 //      Array original y data que es el equivalente que se 
 //      le pasa a la tabla. React-Table solicita que sea memoizada
-  const [listaCasos, setListaCasos] = React.useState([]);
+  const [listaCasos, setListaCasos] = React.useState([]); 
   const data = React.useMemo(() => listaCasos, [listaCasos]);
 
 // ==================================================================
@@ -25,8 +25,8 @@ export default function TableCasos() {
 //           al inicio y luego ver ante que cambios
   React.useEffect(() => {
       async function fetchData() {
-        const data = await Casos.getAll();
-        setListaCasos(data);
+        const dataCasos = await Casos.getAll();
+        setListaCasos(dataCasos);
       }
       fetchData();
     }, []);
@@ -40,23 +40,29 @@ export default function TableCasos() {
 
 // ==================================================
 //      Prueba cambio de un atributo en una fila
-  function setEstado(estado, row) {
+function setEstado(estado, row) {
+  console.log("entrando en setEstado: ListaCasos[row.index]", listaCasos[row.index])
+  const updateRecordInmutable = () => {
+        const newRecord = { ...row.original, estadoID: estado };
+        const newlistaCasos = [...listaCasos];
+        newlistaCasos[row.index] = newRecord;   // en lugar de row.index quizas hay que hacer un findIndex del id en original
+        return newlistaCasos
+// console.log("Update: ", listaCasos)
+//         return listaCasos.map((caso, index) =>
+//                               index === row.index ? newRecord : caso
+//                           );
+    };
 
-    const updateRecordInmutable = () => {
-          const newRecord = { ...row.original, estadoID: estado };
-          const newlistaCasos = [...listaCasos];
-          newlistaCasos[row.index] = newRecord;   // en lugar de row.index quizas hay que hacer un findIndex del id en original
-          return newlistaCasos
-      };
+  console.log("Estado cambiado = ", estado);
+  console.log(`Antes de cambiar: row.index ${row.index}, row.original.estadoID: ${row.original.estadoID}`);
+  console.log("ListaCasos[row.index]", listaCasos[row.index])
+  const newListaCasos = updateRecordInmutable();
+  setListaCasos(newListaCasos);  
+  console.log("Despues de cambiar:")
+  console.log("ListaCasos[row.index]", listaCasos[row.index].estadoID, listaCasos[row.index])
+  console.log("Data[row.index]", data[row.index].estadoID)
 
-    console.log("Estado cambiado = ", estado);
-    console.log(row.index, row.original);
-    console.log(listaCasos[row.index])
-    const newListaCasos = updateRecordInmutable();
-    console.log(newListaCasos[row.index]);
-    setListaCasos(newListaCasos);  
-
-  }
+}
 
 // ==================================================
 //       Clases especiales para ciertas celdas

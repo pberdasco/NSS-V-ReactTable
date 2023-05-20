@@ -10,7 +10,7 @@ export default function tableCasoColumns(setEstado){
       id: "expander",
       Cell: ({ row }) => (
         <span {...row.getToggleRowExpandedProps()}>
-          {row.isExpanded ? "👇" : "👉"}
+          {row.isExpanded ? "⏪" : "⏩"}
         </span>
       ),
     },
@@ -58,7 +58,7 @@ export default function tableCasoColumns(setEstado){
       Header: "Cliente",
       // Header: () => <span data-name="Cliente">Cliente</span>,
       accessor: "cliente.id",
-      //{`${caso.cliente.id} ${caso.cliente.mail} (${caso.cliente.empresa || caso.cliente.apellido})`}
+      Cell: ({row}) => <>{`${row.original.cliente.id} ${row.original.cliente.mail} (${row.original.cliente.empresa || row.original.cliente.apellido})`}</>
     },
     {
       Header: "Acciones",
