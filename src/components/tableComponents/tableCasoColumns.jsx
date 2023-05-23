@@ -2,7 +2,7 @@
 import BotonesCab from "./botonesCab.jsx";
 import { getEstadoCab, getEstadoDatos} from "../../apiAccess/estados.js";
 
-export default function tableCasoColumns(setEstado){
+export default function tableCasoColumns(){
     return [
     {
       // Header: () => <span data-name="Det">Det</span>,
@@ -65,7 +65,7 @@ export default function tableCasoColumns(setEstado){
       // Header: () => <span data-name="Acciones">Acciones</span>,
       accessor: undefined,
       id: "acciones",
-      Cell: ({ row }) => <BotonesCab row={row} setEstado={setEstado} />,
+      Cell: ({ row }) => <BotonesCab row={row}/>,
     },
   ];
 }

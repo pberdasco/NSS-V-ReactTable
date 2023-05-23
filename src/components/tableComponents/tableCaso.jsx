@@ -9,15 +9,19 @@ import { Styles } from "./tableCasoCSS.js";
 
 import tableCasoColumns from "./tableCasoColumns.jsx";
 
+import { useTableContext } from "../contexts/tableContextHook.jsx";
+
+
 export default function TableCasos() {
 // ================================================
 //       Columnas de la tabla memoizadas  
-  const columns = React.useMemo(() => tableCasoColumns(setEstado), []);
+  const columns = React.useMemo(() => tableCasoColumns(), []);
   
 // =================================================================
 //      Array original y data que es el equivalente que se 
 //      le pasa a la tabla. React-Table solicita que sea memoizada
-  const [listaCasos, setListaCasos] = React.useState([]); 
+  // const [listaCasos, setListaCasos] = React.useState([]); 
+  const {listaCasos, setListaCasos} = useTableContext();
   const data = React.useMemo(() => listaCasos, [listaCasos]);
 
 // ==================================================================
@@ -38,31 +42,7 @@ export default function TableCasos() {
     []
   );
 
-// ==================================================
-//      Prueba cambio de un atributo en una fila
-function setEstado(estado, row) {
-  console.log("entrando en setEstado: ListaCasos[row.index]", listaCasos[row.index])
-  const updateRecordInmutable = () => {
-        const newRecord = { ...row.original, estadoID: estado };
-        const newlistaCasos = [...listaCasos];
-        newlistaCasos[row.index] = newRecord;   // en lugar de row.index quizas hay que hacer un findIndex del id en original
-        return newlistaCasos
-// console.log("Update: ", listaCasos)
-//         return listaCasos.map((caso, index) =>
-//                               index === row.index ? newRecord : caso
-//                           );
-    };
 
-  console.log("Estado cambiado = ", estado);
-  console.log(`Antes de cambiar: row.index ${row.index}, row.original.estadoID: ${row.original.estadoID}`);
-  console.log("ListaCasos[row.index]", listaCasos[row.index])
-  const newListaCasos = updateRecordInmutable();
-  setListaCasos(newListaCasos);  
-  console.log("Despues de cambiar:")
-  console.log("ListaCasos[row.index]", listaCasos[row.index].estadoID, listaCasos[row.index])
-  console.log("Data[row.index]", data[row.index].estadoID)
-
-}
 
 // ==================================================
 //       Clases especiales para ciertas celdas
@@ -76,6 +56,8 @@ function setEstado(estado, row) {
   }
 
   return (
+    <>
+    <div> Filtros</div>
     <Styles>
       <Table
         columns={columns}
@@ -84,5 +66,6 @@ function setEstado(estado, row) {
         setCellClass={setCellClass}
       />
     </Styles>
+    </>
   );
 }
