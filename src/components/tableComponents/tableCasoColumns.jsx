@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import BotonesCab from "./botonesCab.jsx";
 import { getEstadoCab, getEstadoDatos} from "../../apiAccess/estados.js";
+import {FaTruck, FaTrashAlt, FaAngleDoubleUp, FaAngleDoubleDown} from "react-icons/fa"
 
 export default function tableCasoColumns(){
     return [
@@ -10,7 +11,7 @@ export default function tableCasoColumns(){
       id: "expander",
       Cell: ({ row }) => (
         <span {...row.getToggleRowExpandedProps()}>
-          {row.isExpanded ? "⏪" : "⏩"}
+          {row.isExpanded ? <FaAngleDoubleUp/> : <FaAngleDoubleDown/>}
         </span>
       ),
     },
@@ -52,7 +53,7 @@ export default function tableCasoColumns(){
       Header: "Ret",
       // Header: () =><span data-name="Ret">Ret</span>,
       accessor: "retiro",
-      Cell: ({ value }) => value   // Componente que lo muestre dibujito
+      Cell: ({ value }) => (value == 0 ? <FaTrashAlt/> : <FaTruck/>)  // Componente que lo muestre dibujito
     },
     {
       Header: "Cliente",

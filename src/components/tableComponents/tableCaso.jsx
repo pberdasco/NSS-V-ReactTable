@@ -13,6 +13,8 @@ import { useTableContext } from "../contexts/tableContextHook.jsx";
 
 
 export default function TableCasos() {
+  const {listaCasos, setListaCasos, listaCasosUpdated} = useTableContext();
+
 // ================================================
 //       Columnas de la tabla memoizadas  
   const columns = React.useMemo(() => tableCasoColumns(), []);
@@ -21,7 +23,7 @@ export default function TableCasos() {
 //      Array original y data que es el equivalente que se 
 //      le pasa a la tabla. React-Table solicita que sea memoizada
   // const [listaCasos, setListaCasos] = React.useState([]); 
-  const {listaCasos, setListaCasos} = useTableContext();
+  
   const data = React.useMemo(() => listaCasos, [listaCasos]);
 
 // ==================================================================
@@ -33,7 +35,7 @@ export default function TableCasos() {
         setListaCasos(dataCasos);
       }
       fetchData();
-    }, []);
+    }, [listaCasosUpdated]);
 
 // =================================================
 //      Función para renderizar detalles

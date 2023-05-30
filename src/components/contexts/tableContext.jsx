@@ -6,11 +6,12 @@ export const Context = React.createContext();
 export const TableProvider = ({children}) => {
 
     const [listaCasos, setListaCasos] = React.useState([]);
+    const [listaCasosUpdated, setListaCasosUpdated] = React.useState({});
 // Probar con useReducer.
 
 
     return(
-        <Context.Provider value={{listaCasos, setListaCasos}}>
+        <Context.Provider value={{listaCasos, setListaCasos, listaCasosUpdated, setListaCasosUpdated}}>
             {children}
         </Context.Provider>
     )
