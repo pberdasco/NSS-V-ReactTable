@@ -8,6 +8,7 @@ export const TableProvider = ({children}) => {
     const [listaCasos, setListaCasos] = React.useState([]);
     const [listaCasosUpdated, setListaCasosUpdated] = React.useState({});
     const [modalIsOpen, setModalIsOpen] = React.useState(false);
+    const [errorActivo, setErrorActivo] = React.useState({status: 0, message: ""})
 
 // Probar con useReducer.
 
@@ -15,7 +16,8 @@ export const TableProvider = ({children}) => {
     return(
         <Context.Provider value={{listaCasos, setListaCasos,
                           listaCasosUpdated, setListaCasosUpdated,
-                          modalIsOpen, setModalIsOpen}}>
+                          modalIsOpen, setModalIsOpen,
+                          errorActivo, setErrorActivo}}>
             {children}
         </Context.Provider>
     )
