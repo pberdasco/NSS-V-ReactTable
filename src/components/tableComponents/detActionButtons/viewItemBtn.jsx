@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import {FaSearch} from "react-icons/fa"
-import ActionBtn from './actionButton.jsx';
+import ActionBtn from './genericDetActionButton.jsx';
 
 
-export default function ViewCasoBtn({row}) {  
+export default function ViewItemBtn({row}) {  
     const actions = {
         setEstadoCab: true,
         setEstadoCabNumber: 3,
@@ -16,6 +16,6 @@ export default function ViewCasoBtn({row}) {
 }
 
 
-ViewCasoBtn.propTypes = {
+ViewItemBtn.propTypes = {
     row: PropTypes.object.isRequired
 };

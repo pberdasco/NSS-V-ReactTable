@@ -21,10 +21,15 @@ export function OrdenForm({ onSave, onCancel }){
       };
   
     const handleSave = () => {
-      onSave(101, ordenTrabajo.otTecnico, ordenTrabajo.aclaraFallaOT);
-      onCancel();
+        //TODO: Ver el proceso de grabacion    
+        onSave(101, ordenTrabajo.otTecnico, ordenTrabajo.aclaraFallaOT);
+        onCancel();
     };
   
+
+    //TODO: cargar defaults
+    //TODO: sacar los onChange en los campos readOnly
+    //TODO: definir y agregar la grilla de insumos
     return (
       <>
         <h2>Orden de Trabajo</h2>

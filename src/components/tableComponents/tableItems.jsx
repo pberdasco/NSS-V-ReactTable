@@ -4,6 +4,7 @@ import React from 'react';
 import Table from "./table.jsx";
 import {Styles} from "./tableCasoCSS.js";
 import { getEstadoItem} from "../../apiAccess/estados.js"
+import BotonesDet from "./botonesDet.jsx";
 
 // const TableItemsMemo =({row}) =>{
 export default function TableItems({row}) {
@@ -45,6 +46,8 @@ export default function TableItems({row}) {
                             {
                                 Header: 'Acciones',
                                 accessor: undefined,
+                                id: "acciones",
+                                Cell: ({ row }) => <BotonesDet row={row}/>,
                             },
                           ],
                       []      

@@ -2,20 +2,17 @@ import PropTypes from 'prop-types';
 import { useTableContext } from "../../contexts/tableContextHook.jsx";
 import setEstadoCab from '../updateCasos.js';
 
-export default function ActionBtn({row, actions, icon, tooltip}) {
+export default function CabActionBtn({row, actions, icon, tooltip}) {
     const {setListaCasosUpdated, modalIsOpen, setModalIsOpen} = useTableContext();
     
     
     return (
         <button onClick={
             () => {
-                if (actions.setEstadoCab)
-                    setEstadoCab(actions.setEstadoCabNumber, row, setListaCasosUpdated);
-                if (actions.setOrdenTrabajo === "new"){
-                    if (!modalIsOpen)
-                        setModalIsOpen(true);
+                actions.setEstadoCab && setEstadoCab(actions.setEstadoCabNumber, row, setListaCasosUpdated);
+                actions.setOrdenTrabajo === "new" && !modalIsOpen && setModalIsOpen(true);
                 }
-            }}    
+            }    
         title={tooltip}>
             {icon}
         </button>
@@ -23,7 +20,7 @@ export default function ActionBtn({row, actions, icon, tooltip}) {
 }
 
 
-ActionBtn.propTypes = {
+CabActionBtn.propTypes = {
     row: PropTypes.object.isRequired,
     actions: PropTypes.object,
     icon: PropTypes.element,
