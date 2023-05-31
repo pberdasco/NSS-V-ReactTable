@@ -11,7 +11,7 @@ export class Casos{
     }
 
     static async updateCab(idCaso, updatedFields){
-        console.log(idCaso);
+        //console.log(idCaso);
         try{
             const response = await fetch(`http://localhost:5001/casos/${idCaso}`,
             {

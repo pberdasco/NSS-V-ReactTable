@@ -1,0 +1,131 @@
+/* ======================== Ingreso Std  ============================= */
+.ingresaStdWindow-sm{
+	min-width: 50%;
+}
+.ingresaStdWindow-md{
+	width: 75%;
+    height: fit-content;
+    max-height: 70%;
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgb(204, 204, 204);
+    background: darkgray;
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+    /* inset: 40px;  */
+
+}
+
+.ingresaStdWindowOverlay{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.stdBloqueCampo{
+	margin-bottom: 10px;
+}
+
+.stdLabelIngreso{
+	display: inline-block;
+	font-weight: bold;
+	width: 95%;
+	text-align: left;
+}
+
+.stdInputIngreso{
+	display: inline-block;
+	color: var(--input-color);
+	width: 95%;
+	text-align: left;
+}
+
+.stdIngresoButtons{
+	width: 90%;
+	text-align: center;
+}
+
+
+
+/* ==================== Columnas de Ingreso Std ============= */
+
+/*  ----  Un div grillaInputStd al rededor de todos los campos de cada fila ----- */
+.grillaInputStd{
+	display: grid; 
+	grid-template-columns: repeat(6, 1fr); 
+}
+
+/* ---- En cada grupo de campo (label+input) c-n, w-n  
+        para indicar desde que columna y que ancho en columnas ---- */
+.c-1{
+	grid-column-start: 1;
+}
+.c-2{
+	grid-column-start: 2;
+}
+.c-3{
+	grid-column-start: 3;
+}
+.c-4{
+	grid-column-start: 4;
+}
+.c-5{
+	grid-column-start: 5;
+}
+.c-6{
+	grid-column-start: 6;
+}
+
+.w-1{
+	grid-column-end: span 1;
+}
+.w-2{
+	grid-column-end: span 2;
+}
+.w-3{
+	grid-column-end: span 3;
+}
+.w-4{
+	grid-column-end: span 4;
+}
+.w-5{
+	grid-column-end: span 5;
+}
+.w-6{
+	grid-column-end: span 6;
+}
+
+
+/* ==================== Grilla Insumos Orden de Trabajo ============= */
+#grilla-otInsumos [data-column="1"]{width: 20%;}
+#grilla-otInsumos [data-column="2"]{width: 40%;}
+#grilla-otInsumos [data-column="4"]{width: 40%;}
+#grilla-otInsumos{
+	width: 100%;
+    margin: 5px 0 20px 0;
+}
+
+.btnMedio{
+	background-color: var(--btn-back-color);
+	color: var(--btn-front-color);
+	border: none;
+	margin-top: 6px;
+	padding: 3px 18px 2px;
+	border-radius: 5px;   
+    /* min-width: 120px; */
+	cursor: pointer;
+}
+
+.btnMedio:hover{
+	background-color: var(--btn-hover-color);
+}
+.btnMedio:disabled{
+	background-color: var(--btn-disabled-color);
+}

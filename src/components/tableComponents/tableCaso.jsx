@@ -10,7 +10,7 @@ import { Styles } from "./tableCasoCSS.js";
 import tableCasoColumns from "./tableCasoColumns.jsx";
 
 import { useTableContext } from "../contexts/tableContextHook.jsx";
-
+import { OrdenModal } from "../modalForms/ordenModal.jsx";
 
 export default function TableCasos() {
   const {listaCasos, setListaCasos, listaCasosUpdated} = useTableContext();
@@ -68,6 +68,7 @@ export default function TableCasos() {
         setCellClass={setCellClass}
       />
     </Styles>
+    <OrdenModal />
     </>
   );
 }

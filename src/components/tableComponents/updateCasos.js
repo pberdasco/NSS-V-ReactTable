@@ -4,7 +4,7 @@ import { Casos } from "../../apiAccess/casosApi.js";
 export default async function setEstadoCab(estado, row, setListaCasosUpdated) {    
     try{
         const dataCasos = await Casos.updateCab(row.original.id, {estadoID: estado});
-        console.log(dataCasos?.estadoID, "dataCasos:", dataCasos);
+        //console.log(dataCasos?.estadoID, "dataCasos:", dataCasos);
         if (!dataCasos.errorStatus){
             setListaCasosUpdated({row})
         }else{
