@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import ViewCasoBtn from './cabActionButtons/viewCasoBtn.jsx';
-import TglRetiroBtn from './cabActionButtons/tglRetiroBtn.jsx';
+import ViewCasoBtn from './viewCasoBtn.jsx';
+import TglRetiroBtn from './tglRetiroBtn.jsx';
 
 
 export default function BotonesCab({row}) {

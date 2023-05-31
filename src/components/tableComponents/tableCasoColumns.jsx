@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import BotonesCab from "./botonesCab.jsx";
+import BotonesCab from "./cabActionButtons/botonesCab.jsx";
 import { getEstadoCab, getEstadoDatos} from "../../apiAccess/estados.js";
 import {FaTruck, FaTrashAlt, FaAngleDoubleUp, FaAngleDoubleDown} from "react-icons/fa"
 

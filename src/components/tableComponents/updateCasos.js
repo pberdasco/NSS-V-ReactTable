@@ -16,13 +16,3 @@ export default async function setEstadoCab(estado, row, setListaCasosUpdated) {
     }
 }
 
-// Version en la que modifica directamente listaCasos.
-    // console.log("entrando en setEstado: listaCasos[row.index]", listaCasos[row.index])
-    // const updateRecordInmutable = () => {
-    //     const newRecord = { ...row.original, estadoID: estado };
-    //     const newlistaCasos = [...listaCasos];
-    //     newlistaCasos[row.index] = newRecord;   // en lugar de row.index quizas hay que hacer un findIndex del id en original
-    //     return newlistaCasos
-    // };
-    // const newListaCasos = updateRecordInmutable();
-    // setListaCasos(newListaCasos); 

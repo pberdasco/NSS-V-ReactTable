@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import ViewItemBtn from './detActionButtons/viewItemBtn.jsx';
-import RevisionBtn from './detActionButtons/revisionBtn.jsx';
+import ViewItemBtn from './viewItemBtn.jsx';
+import RevisionBtn from './revisionBtn.jsx';
 
 
 export default function BotonesDet({row}) {

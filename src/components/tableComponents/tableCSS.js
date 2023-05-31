@@ -4,8 +4,8 @@ export const Styles = styled.div`
   /* padding: 1rem; */
 
   html, body {
-  height: 100%;
-}
+    height: 100%;
+  }
 
   .colorRechazado{
 	  background-color: red;

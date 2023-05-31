@@ -2,60 +2,33 @@ import PropTypes from 'prop-types';
 
 import React from 'react';
 import Table from "./table.jsx";
-import {Styles} from "./tableCasoCSS.js";
+import {Styles} from "./tableCSS.js";
 import { getEstadoItem} from "../../apiAccess/estados.js"
-import BotonesDet from "./botonesDet.jsx";
+import tableItemsColumns from "./tableItemsColumns.jsx";
 
-// const TableItemsMemo =({row}) =>{
 export default function TableItems({row}) {
   
+    // ================================================
+    //     Array original: los items de una fila
     const items = row.original.items;
 
+    // ================================================
+    //       Columnas de la tabla memoizadas  
+    const columns = React.useMemo(() => tableItemsColumns(), []);
+
+    // =================================================================
+    //      Array original y data que es el equivalente que se 
+    //      le pasa a la tabla. React-Table solicita que sea memoizada 
+    const data = React.useMemo(() => items, [items])
+  
+    // =================================================
+    //      Función para renderizar detalles
     const setCellClass = (cell) => { 
         if (cell?.column?.id == "estadoID"){
           return getEstadoItem(cell.value).claseCSS;
         } 
       }
 
-    const columns = React.useMemo(() => [
-                            {
-                                Header: 'Item',
-                                accessor: 'id'
-                            },
-                            {
-                                Header: 'Producto',
-                                accessor: 'productoId',
-                            },
-                            {
-                                Header: 'Color',
-                                accessor: 'color',
-                            },
-                            {
-                                Header: 'Factura',
-                                accessor: 'nroFactura',
-                            },
-                            {
-                                Header: 'Serie',
-                                accessor: 'serie',
-                            },
-                            {
-                                Header: 'Estado',
-                                accessor: 'estadoID',
-                                Cell: ({ value }) => <>{getEstadoItem(value).nombre}</>,
-                            },
-                            {
-                                Header: 'Acciones',
-                                accessor: undefined,
-                                id: "acciones",
-                                Cell: ({ row }) => <BotonesDet row={row}/>,
-                            },
-                          ],
-                      []      
-                    );
-  
-    const data = React.useMemo(() => items, [items])
-  
-  
     return (
       <Styles>
           <Table
