@@ -1,4 +1,4 @@
-import { Casos } from "../../apiAccess/casosApi.js";
+import { Casos } from "../apiAccess/casosApi.js";
 // ==================================================
 //      Prueba cambio de un atributo en una fila
 export default async function setEstadoCab(estado, row, setListaCasosUpdated) {    

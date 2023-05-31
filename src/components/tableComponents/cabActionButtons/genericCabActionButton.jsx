@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useTableContext } from "../../contexts/tableContextHook.jsx";
-import setEstadoCab from '../updateCasos.js';
+import setEstadoCab from '../../../services/updateCasos.js';
 
 export default function CabActionBtn({row, actions, icon, tooltip}) {
     const {setListaCasosUpdated, modalIsOpen, setModalIsOpen} = useTableContext();
