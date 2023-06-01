@@ -7,9 +7,9 @@ import TglRetiroBtn from './tglRetiroBtn.jsx';
 export default function BotonesCab({row}) {
     let botones = [];
 
-    botones.push(<TglRetiroBtn key="TglRetiroBtn" row={row}/>);
+    botones.push(<ViewCasoBtn key="viewCasoBtn" row={row}/>)
     if (row.original.items.length == 2)
-        botones.push(<ViewCasoBtn key="viewCasoBtn" row={row}/>)
+        botones.push(<TglRetiroBtn key="TglRetiroBtn" row={row}/>);
 
     return (
         <>

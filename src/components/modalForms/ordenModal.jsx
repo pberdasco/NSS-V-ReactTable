@@ -3,15 +3,15 @@ import { OrdenForm } from "./ordenForm.jsx";
 import { useTableContext } from "../contexts/tableContextHook.jsx";
 
 export function OrdenModal(){
-    const {modalIsOpen, setModalIsOpen} = useTableContext();
+    const {modalOrdenIsOpen, setModalOrdenIsOpen} = useTableContext();
     
     const handleSave = (nroOrden, tecnico, problema) => {
       console.log("Guardando: ", nroOrden, tecnico, problema);
-      setModalIsOpen(false);
+      setModalOrdenIsOpen(false);
     };
   
     return (
-      <ModalForm isOpen={modalIsOpen} closeModal={() => setModalIsOpen(false)} 
+      <ModalForm isOpen={modalOrdenIsOpen} closeModal={() => setModalOrdenIsOpen(false)} 
                  contentClassName="ingresaStdWindow-md" modalOverlayClass="ingresaStdWindowOverlay">
         <OrdenForm onSave={handleSave} onCancel={() => console.log("Cancelando orden...")} />
       </ModalForm>

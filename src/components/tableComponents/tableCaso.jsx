@@ -11,6 +11,8 @@ import tableCasoColumns from "./tableCasoColumns.jsx";
 
 import { useTableContext } from "../contexts/tableContextHook.jsx";
 import { OrdenModal } from "../modalForms/ordenModal.jsx";
+import { FallaModal } from "../modalForms/fallaModal.jsx";
+import { ShowCasoModal } from "../modalForms/showCasoModal.jsx";
 
 export default function TableCasos() {
   const {listaCasos, setListaCasos, listaCasosUpdated} = useTableContext();
@@ -57,16 +59,17 @@ export default function TableCasos() {
 
   return (
     <>
-    <div> Filtros</div>
-    <Styles>
-      <Table
-        columns={columns}
-        data={data}
-        renderRowSubComponent={renderRowSubComponent}
-        setCellClass={setCellClass}
-      />
-    </Styles>
-    <OrdenModal />
+      <Styles>
+        <Table
+          columns={columns}
+          data={data}
+          renderRowSubComponent={renderRowSubComponent}
+          setCellClass={setCellClass}
+        />
+      </Styles>
+      <OrdenModal />
+      <FallaModal />
+      <ShowCasoModal />
     </>
   );
 }

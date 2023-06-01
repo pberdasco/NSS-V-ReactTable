@@ -3,7 +3,7 @@ import {FaSearch} from "react-icons/fa"
 import ActionBtn from './genericDetActionButton.jsx';
 
 
-export default function ViewItemBtn({row}) {  
+export default function ViewItemBtn({row, caso}) {  
     const actions = {
         setEstadoCab: true,
         setEstadoCabNumber: 3,
@@ -11,11 +11,12 @@ export default function ViewItemBtn({row}) {
     };
     
     return (
-        <ActionBtn row={row} actions={actions} icon={<FaSearch/>} tooltip="Presione aqui para cambiar el estado a 3"/>
+        <ActionBtn row={row} caso={caso} actions={actions} icon={<FaSearch/>} tooltip="Presione aqui para cambiar el estado a 3"/>
     )
 }
 
 
 ViewItemBtn.propTypes = {
-    row: PropTypes.object.isRequired
+    row: PropTypes.object.isRequired,
+    caso: PropTypes.object.isRequired
 };

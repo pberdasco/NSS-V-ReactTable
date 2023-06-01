@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import {FaRegThumbsUp} from "react-icons/fa"
+import {FaTrashAlt} from "react-icons/fa"
 import ActionBtn from './genericDetActionButton.jsx';
 
 
-export default function RevisionBtn({row, caso}) {  
+export default function DestruirBtn({row, caso}) {  
     const actions = {
         setEstadoCab: true,
         setEstadoCabNumber: 1,
@@ -11,12 +11,12 @@ export default function RevisionBtn({row, caso}) {
     };
     
     return (
-        <ActionBtn row={row} casp={caso} actions={actions} icon={<FaRegThumbsUp/>} tooltip="Pasar a Revisado, indicando la falla."/>
+        <ActionBtn row={row} caso={caso} actions={actions} icon={<FaTrashAlt/>} tooltip="Solicitar Destrucción"/>
     )
 }
 
 
-RevisionBtn.propTypes = {
+DestruirBtn.propTypes = {
     row: PropTypes.object.isRequired,
     caso: PropTypes.object.isRequired
 };

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import {FaBullhorn} from "react-icons/fa"
 
-import ActionBtn from './genericCabActionButton.jsx';
+import CabActionBtn from './genericCabActionButton.jsx';
 
 
 export default function TglRetiroBtn({row}) {  
@@ -12,7 +12,7 @@ export default function TglRetiroBtn({row}) {
     };
     
     return (
-        <ActionBtn row={row} actions={actions} icon={<FaBullhorn/>} tooltip="Presione aqui para cambiar el estado a 7"/>
+        <CabActionBtn row={row} actions={actions} icon={<FaBullhorn/>} tooltip="Presione aqui para cambiar el estado a 7"/>
     )
 }
 

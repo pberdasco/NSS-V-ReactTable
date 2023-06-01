@@ -1,19 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from 'prop-types';
 import { useTableContext } from "../../contexts/tableContextHook.jsx";
 import setEstadoCab from '../../../services/updateCasos.js';
 
 export default function CabActionBtn({row, actions, icon, tooltip}) {
-    const {setListaCasosUpdated, modalIsOpen, setModalIsOpen} = useTableContext();
-    
-    
+    const {setListaCasosUpdated, modalOrdenIsOpen, setModalOrdenIsOpen, modalViewCasoIsOpen, setModalViewCasoIsOpen, setCasoActual} = useTableContext();
+
+    const handleClick = () => {
+        setCasoActual(row);
+        actions.viewCaso && !modalViewCasoIsOpen && setModalViewCasoIsOpen(true);
+        actions.setEstadoCab && setEstadoCab(actions.setEstadoCabNumber, row, setListaCasosUpdated);
+        actions.setOrdenTrabajo === "new" && !modalOrdenIsOpen && setModalOrdenIsOpen(true);
+        }
+
     return (
-        <button onClick={
-            () => {
-                actions.setEstadoCab && setEstadoCab(actions.setEstadoCabNumber, row, setListaCasosUpdated);
-                actions.setOrdenTrabajo === "new" && !modalIsOpen && setModalIsOpen(true);
-                }
-            }    
-        title={tooltip}>
+        <button onClick={handleClick} title={tooltip}>
             {icon}
         </button>
     )
