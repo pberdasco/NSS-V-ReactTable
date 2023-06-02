@@ -11,25 +11,42 @@ import RechazarBtn from './rechazarBtn.jsx';
 
 export default function BotonesDet({row}) {
     const item = row.original;
-//console.log(item );
     const {listaCasos} = useTableContext();
     const casoIndex = listaCasos.findIndex((x) => x.id === item.casoId);
     const caso = listaCasos[casoIndex];
-    let botones = [];
+    
+    const buttonConfig = {
+        viewItemBtn: { component: ViewItemBtn, condition: true },
+        retirarBtn:  { component: RetirarBtn, condition: caso.estadoID === estadosCab.enproceso && 
+                       (item.estadoID === estadosItem.noprocesado || item.estadoID === estadosItem.rechazado) && caso.retiro },
+        destruirBtn: { component: DestruirBtn, condition: caso.estadoID === estadosCab.enproceso && 
+                       (item.estadoID === estadosItem.noprocesado || item.estadoID === estadosItem.rechazado) && !caso.retiro },
+        rechazarBtn: { component: RechazarBtn, condition: caso.estadoID === estadosCab.enproceso && item.estadoID === estadosItem.noprocesado },
+        revisionBtn: { component: RevisionBtn, condition: caso.estadoID === estadosCab.recibido && item.estadoID === estadosItem.enrevision },
+      };
+      
+      let botones = [];
+      
+      for (let [key, value] of Object.entries(buttonConfig)) {
+        if (value.condition) {
+          botones.push(<value.component key={key} row={row} caso={caso} />);
+        }
+      }
+    
+    
+    // let botones = [];
+    // botones.push(<ViewItemBtn key="viewItemBtn" row={row} caso={caso}/>);
+    // if (caso.estadoID === estadosCab.enproceso && item.estadoID === estadosItem.noprocesado){
+    //     caso.retiro ? botones.push(<RetirarBtn key="retirarBtn" row={row} caso={caso}/>) : botones.push(<DestruirBtn key="destruirBtn" row={row} caso={caso}/>);
+    //     botones.push(<RechazarBtn key="rechazarBtn" row={row} caso={caso}/>)
 
-    botones.push(<ViewItemBtn key="viewItemBtn" row={row} caso={caso}/>);
+    // }
+    // else if (caso.estadoID === estadosCab.enproceso && item.estadoID === estadosItem.rechazado){
+    //     caso.retiro ? botones.push(<RetirarBtn key="retirarBtn" row={row} caso={caso}/>) : botones.push(<DestruirBtn key="destruirBtn" row={row} caso={caso}/>);
+    // } else if(caso.estadoID === estadosCab.recibido && item.estadoID === estadosItem.enrevision){
+    //     botones.push(<RevisionBtn key="rechazarBtn" row={row} caso={caso}/>)
+    // }  
 
-    if (caso.estadoID === estadosCab.enproceso && item.estadoID === estadosItem.noprocesado){
-        caso.retiro ? botones.push(<RetirarBtn key="retirarBtn" row={row} caso={caso}/>) : botones.push(<DestruirBtn key="destruirBtn" row={row} caso={caso}/>);
-        botones.push(<RechazarBtn key="rechazarBtn" row={row} caso={caso}/>)
-
-    }
-    else if (caso.estadoID === estadosCab.enproceso && item.estadoID === estadosItem.rechazado){
-        caso.retiro ? botones.push(<RetirarBtn key="retirarBtn" row={row} caso={caso}/>) : botones.push(<DestruirBtn key="destruirBtn" row={row} caso={caso}/>);
-    } else if(caso.estadoID === estadosCab.recibido && item.estadoID === estadosItem.enrevision){
-        botones.push(<RevisionBtn key="rechazarBtn" row={row} caso={caso}/>)
-    }  
-    // Revisar
 
 
 
